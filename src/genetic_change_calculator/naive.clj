@@ -48,7 +48,13 @@
   [change]
   (apply + (vals change)))
 
+(defn handle-other-case
+  [x coinset]
+  (if-let [winner (first (sort-by count-coins (changer-all-subsets x coinset)))]
+    winner
+    (throw (Exception. "Cannot give complete change with this coinset"))))
+
 (defn changer
   [x coinset]
   (try (changer-top x coinset)
-       (catch Exception e (first (sort-by count-coins (changer-all-subsets x coinset))))))
+       (catch Exception e (handle-other-case x coinset))))
