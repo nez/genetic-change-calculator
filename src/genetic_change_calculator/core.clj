@@ -1,5 +1,6 @@
 (ns genetic-change-calculator.core
-  (:require [darwin.core :refer :all]))
+  (:require [darwin.core :refer :all]
+            [genetic-change-calculator.naive :refer :all]))
 
 
 (defn total-money [coinset individual]
